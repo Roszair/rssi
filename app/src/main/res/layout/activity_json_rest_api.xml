@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".JsonRestApi">
+
+        <TextView
+            android:id="@+id/rssiValues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:background="@color/button_pressed"
+            android:text="RSSI Values"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+
+        <EditText
+            android:id="@+id/edtSignal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rssiValues"
+            android:layout_marginTop="48dp"
+            android:hint="Enter signal strength: [String]" />
+
+        <EditText
+            android:id="@+id/edtBssid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtSignal"
+            android:layout_marginTop="0dp"
+            android:hint="Enter BSSID [String]" />
+
+        <EditText
+            android:id="@+id/edtSignalLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter Your Signal level:[String]"
+            android:layout_below="@id/edtBssid"/>
+
+        <EditText
+            android:id="@+id/edtSsid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtSignalLevel"
+            android:hint="Enter name of your network[String]"/>
+
+        <EditText
+            android:id="@+id/edtWpaAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtSsid"
+            android:hint="Enter your phone privacy code[String]"/>
+
+        <EditText
+            android:id="@+id/edtWpa_cipher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtWpaAuth"
+            android:hint="Enter your security number[String]"/>
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtWpa_cipher"
+            android:layout_marginTop="14dp"
+            android:text="Clear"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnPost"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnClear"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="-44dp"
+            android:layout_marginEnd="28dp"
+            android:layout_toEndOf="@+id/btnClear"
+            android:text="Post Values"
+            android:textColor="@color/white" />
+</RelativeLayout></ScrollView>

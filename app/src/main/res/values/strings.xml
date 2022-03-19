@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">rssi</string>
+    <string name="battery_level">Battery level</string>
+    <string name="ip">IP</string>
+    <string name="speed">SPEED</string>
+    <string name="connected_status">Connected status</string>
+    <string name="link_speed">Link speed</string>
+    <string name="mac">MAC</string>
+    <string name="bssid">BSSID</string>
+    <string name="ssid">SSID!</string>
+    <string name="rssi_level">RSSI Level</string>
+    <string name="scan_network">Scan Network</string>
+    <string name="button">scan network</string>
+    <string name="click_here_for_json_rest_api">CLICK Here for JSON REST API</string>
+</resources>
