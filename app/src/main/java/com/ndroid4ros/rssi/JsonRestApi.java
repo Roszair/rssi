@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.PermissionRequest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.ndroid4ros.rssi.databinding.ActivityMainBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class JsonRestApi extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -36,6 +39,8 @@ public class JsonRestApi extends AppCompatActivity implements View.OnClickListen
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_json_rest_api);
 
+        PermissionRequests.Companion.permissions(this);
+
         submitButton = findViewById(R.id.btnPost);
         clearButton = findViewById(R.id.btnClear);
         BSSID = findViewById(R.id.edtBssid);
@@ -45,7 +50,7 @@ public class JsonRestApi extends AppCompatActivity implements View.OnClickListen
         WPA_AUTH = findViewById(R.id.edtWpaAuth);
         WPA_CIPHER = findViewById(R.id.edtWpa_cipher);
 
-       // valuesApi = APIClient.getRetrofit().create(ValuesApi.class);
+       valuesApi = APIClient.getRetrofit().create(ValuesApi.class);
 
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +64,12 @@ public class JsonRestApi extends AppCompatActivity implements View.OnClickListen
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Values values = new Values(Integer.parseInt(BSSID.getText().toString()),Integer.parseInt(SIGNAL_LEVEL.getText().toString()),Integer.parseInt(SIGNAL.getText().toString()),Integer.parseInt(SSID.getText().toString()),Integer.parseInt(WPA_AUTH.getText().toString()),Integer.parseInt(WPA_CIPHER.getText().toString()));
+                Values values = new Values(Integer.parseInt(BSSID.getText().toString()),
+                        Integer.parseInt(SIGNAL_LEVEL.getText().toString()),
+                        Integer.parseInt(SIGNAL.getText().toString()),
+                        Integer.parseInt(SSID.getText().toString()),
+                        Integer.parseInt(WPA_AUTH.getText().toString()),
+                        Integer.parseInt(WPA_CIPHER.getText().toString()));
                 postValues(values);
                 startActivity(new Intent(JsonRestApi.this, JsonRestApi.class));
 
@@ -69,22 +79,27 @@ public class JsonRestApi extends AppCompatActivity implements View.OnClickListen
     }
 
     private void postValues(Values values){
-        Call<Values> call = valuesApi.rssiValues( values);
-        ValuesApi valuesApi = APIClient.getRetrofit().create(ValuesApi.class);
+        Call<Values> call = valuesApi.rssiValues(values);
+
+        if (valuesApi==null)
+           //ValuesApi valuesApi = APIClient.getRetrofit().create(ValuesApi.class);
+
         call.enqueue(new Callback<Values>() {
             @Override
             public void onResponse(Call<Values> call, Response<Values> response) {
                 if (response.isSuccessful()){
 
-                    if (response.body() !=null){
+                    /*if (response.body() !=null){
                         String s = response.body().toString();
-                    }
+                    }*/
                     Toast toast = Toast.makeText(getApplicationContext(),"Values posted successfully", Toast.LENGTH_SHORT);
+                    toast.getView().setBackgroundColor(Color.parseColor("#00ff00"));
                     toast.show();
                 }
                 else {
                     Log.e(TAG, response.message());
                     Toast toast = Toast.makeText(getApplicationContext(),"Unable to post, check API", Toast.LENGTH_SHORT);
+                    toast.getView().setBackgroundColor(Color.parseColor("#00ff00"));
                     toast.show();
                 }
             }

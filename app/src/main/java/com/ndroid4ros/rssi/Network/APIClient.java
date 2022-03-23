@@ -13,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class APIClient {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://localhost:5000/api/rssi/saveInfo"; //from Localhost
+    private static final String BASE_URL = "http://localhost:5000/api/rssi/saveInfo/"; //from Localhost
     private static OkHttpClient okHttpClient;
     private static int REQUEST_TIMEOUT = 100;
 

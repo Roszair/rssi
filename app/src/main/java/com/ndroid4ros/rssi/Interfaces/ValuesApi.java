@@ -4,6 +4,7 @@ import com.ndroid4ros.rssi.Models.Values;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -13,10 +14,11 @@ import retrofit2.http.POST;
 public interface ValuesApi {
 
     //@POST("api/rssi/saveInfo")
-    @POST("api/rssi")
+    @POST("api/rssi/saveInfo")
     Call<Values> rssiValues(@Body Values values);
 
     //@POST("api/rssi/saveInfo")
+    //@FormUrlEncoded
     @POST("api/saveInfo")
     Call<Values> postValues(
             @Field("bssid") String bssid,
